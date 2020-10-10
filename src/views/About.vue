@@ -1,17 +1,17 @@
 <template>
     <div class="about">
-        <TransferTwo
+        <Transfer
             :listLeft="arrayLeft"
             :listRight="arrayRight"/>
     </div>
 </template>
 
 <script>
-import TransferTwo from '@/components/transferTwo.vue'
+import Transfer from '@/components/transfer/transfer.vue'
 export default {
     name: 'about',
     components: {
-        TransferTwo
+        Transfer
     },
     data () {
         // 列表1在加载时候获取的虚拟数据

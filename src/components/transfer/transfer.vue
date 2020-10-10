@@ -73,27 +73,23 @@
 export default {
     name: 'Transfer',
     props: {
-        listLeft: Array,
-        listRight: Array
+        dataSource: {
+            type: Array,
+            default () {
+                return []
+            }
+        },
+        value: {
+            type: Array,
+            default () {
+                return []
+            }
+        }
     },
     data () {
-        // // 列表1在加载时候获取的虚拟数据
-        // const generateData = () => {
-        //     const arraydata = []
-        //     for (let i = 1; i <= 15; i++) {
-        //         arraydata.push({
-        //             key: i,
-        //             label: `备选项${i}`
-        //             // disabled: i % 4 === 0
-        //         })
-        //     }
-        //     return arraydata
-        // }
         return {
-            // arrayLeft: generateData(),
-            // arrayRight: [],
-            arrayLeft: this.listLeft,
-            arrayRight: this.listRight,
+            arrayLeft: this.dataSource,
+            arrayRight: [],
             data: [],
             leftDatas: [],
             rightDatas: [],
@@ -101,7 +97,33 @@ export default {
             rightChecked: false
         }
     },
+    watch: {
+        arrayRight () {
+            const val = []
+            if (this.arrayRight) {
+                this.arrayRight.forEach(item => {
+                    val.push(item.key)
+                })
+                console.log(val)
+                this.$emit('update:value', val)
+            }
+        }
+    },
+    mounted () {
+        this.inItialiZation()
+    },
     methods: {
+        inItialiZation () {
+            this.arrayLeft = this.dataSource.filter(item => this.value.indexOf(item.key) === -1)
+            const arr = []
+            this.value.forEach(item => {
+                const index = this.dataSource.findIndex(value => value.key === item)
+                arr.push(index)
+            })
+            arr.forEach(index => {
+                this.arrayRight.push(this.dataSource[index])
+            })
+        },
         // 点击列表1全选时触发
         leftSelectAll ($event) {
             if ($event.currentTarget.checked === true) {

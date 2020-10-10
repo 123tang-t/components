@@ -2,43 +2,45 @@
   <div class="home">
     <!-- <Pagea/>
     <Pageb/> -->
-    <!-- <Transfer/> -->
-    <div class="text" @click="jump">
-        跳转
-    </div>
+    <Transfer
+        v-model="value"
+        :dataSource="dataSource"/>
+        <div v-for="item of value" :key="item">{{item}}</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 // import Pagea from '@/components/a.vue'
 // import Pageb from '@/components/b.vue'
-// import Transfer from '@/components/transfer.vue'
+import Transfer from '@/components/transfer/transfer.vue'
 
 export default {
     name: 'Home',
     components: {
         // Pagea,
         // // Pageb,
-        // Transfer
+        Transfer
     },
-    methods: {
-        jump () {
-            this.$router.push({
-                path: '/about'
-            })
+    data () {
+        // 生成虚拟数据的数据源
+        const generateData = () => {
+            const arraydata = []
+            for (let i = 1; i <= 15; i++) {
+                arraydata.push({
+                    key: i,
+                    label: `备选项${i}`
+                    // disabled: i % 4 === 0
+                })
+            }
+            return arraydata
+        }
+        return {
+            dataSource: generateData(),
+            value: []
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.home {
-    .text {
-        height: 50px;
-        width: 50px;
-        line-height: 30px;
-        text-align: center;
-    }
-}
 </style>
