@@ -1,7 +1,5 @@
 <template>
   <div class="home">
-    <!-- <Pagea/>
-    <Pageb/> -->
     <Transfer
         v-model="value"
         :dataSource="dataSource"/>
@@ -10,15 +8,11 @@
 </template>
 
 <script>
-// import Pagea from '@/components/a.vue'
-// import Pageb from '@/components/b.vue'
 import Transfer from '@/components/transfer/transfer.vue'
 
 export default {
     name: 'Home',
     components: {
-        // Pagea,
-        // // Pageb,
         Transfer
     },
     data () {

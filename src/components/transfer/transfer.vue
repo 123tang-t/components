@@ -114,12 +114,15 @@ export default {
     },
     methods: {
         inItialiZation () {
+            // 获取列表1的初始化列表
             this.arrayLeft = this.dataSource.filter(item => this.value.indexOf(item.key) === -1)
+            // 遍历value数组在数据源的索引
             const arr = []
             this.value.forEach(item => {
                 const index = this.dataSource.findIndex(value => value.key === item)
                 arr.push(index)
             })
+            // 获取到列表2的初始化列表
             arr.forEach(index => {
                 this.arrayRight.push(this.dataSource[index])
             })
