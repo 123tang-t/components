@@ -3,7 +3,6 @@
     <Transfer
         v-model="value"
         :dataSource="dataSource"/>
-        <div v-for="item of value" :key="item">{{item}}</div>
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
         }
         return {
             dataSource: generateData(),
-            value: []
+            value: [1, 4]
         }
     }
 }
