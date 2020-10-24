@@ -116,8 +116,8 @@ export default {
         inItialiZation () {
             // 获取列表1的初始化列表
             this.arrayLeft = this.dataSource.filter(item => this.value.indexOf(item.key) === -1)
-            // 遍历value数组在数据源的索引
             const arr = []
+            // 遍历value数组在数据源的索引
             this.value.forEach(item => {
                 const index = this.dataSource.findIndex(value => value.key === item)
                 arr.push(index)
